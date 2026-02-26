@@ -1,171 +1,109 @@
 # Project Plan Presentation (PPP)
-## ChatGPT Clone – Individual Project
+## Ontology-Aware AI Knowledge Assistant (ChatGPT Clone)
+**Individual Project - A.J. Schulte**
 
 ---
 
 ## 📋 Executive Summary
 
-A real-time conversational AI application that replicates ChatGPT functionality using React, Node.js Express, and the OpenAI API. The project demonstrates full-stack development with WebSocket communication and client-side session management.
+A real-time desktop AI assistant built on the **MLOD (Multi-level Ontology Description)** framework. Unlike standard ChatGPT clones, this application integrates a structured knowledge layer (ontology) to ground AI responses in verified facts, reduce hallucinations, and allow domain experts to define the "ground truth" for their conversations.
 
 ---
 
 ## 🎯 Project Overview
 
-| Attribute        | Details                                    |
-| ---------------- | ------------------------------------------ |
-| **Project Name** | ChatGPT Clone                              |
-| **Type**         | Full-Stack Web Application                 |
-| **Duration**     | 11 Weeks (2 Sprints)                       |
-| **Target Users** | End users seeking AI-powered conversations |
+| Attribute        | Details                                 |
+| ---------------- | --------------------------------------- |
+| **Project Name** | Ontology-Aware AI Assistant             |
+| **Type**         | Electron Desktop Application            |
+| **Duration**     | 11 Weeks (2 Sprints)                    |
+| **Target Users** | Domain Experts, Researchers, Developers |
 
 ---
 
 ## 🛠️ Technology Stack
 
-### Frontend
+### Frontend & App Shell
 - **React** – Component-based UI framework
-- **IndexedDB** – Client-side persistent storage
+- **Electron** – Native desktop shell (Mac/Windows/Linux)
+- **Redux Toolkit** – State management for conversations and ontology
 
-### Backend
-- **Node.js Express** – Server framework
-- **WebSocket** – Real-time bidirectional communication
+### Data & Knowledge
+- **MLOD Framework** – Multi-level ontology modeling
+- **IndexedDB** – Persistent local knowledge storage
 
-### External Services
-- **OpenAI ChatGPT API** – AI response generation
+### AI Integration
+- **Groq / OpenAI API** – High-performance LLM integration (llama-3.1-8b-instant)
+- **Electron IPC** – Secure communication between renderer and API services
 
 ---
 
 ## ✨ Key Features
 
-### MVP Features (Sprint 1)
+### Sprint 1: Technology Foundation & Ontology Awareness
+*Completed*
 
-| Feature                        | Description                                 |
-| ------------------------------ | ------------------------------------------- |
-| **Real-Time Messaging**        | WebSocket-based instant communication       |
-| **Conversation History**       | Persistent storage of all chat sessions     |
-| **Multi-Conversation Support** | Create and switch between multiple chats    |
-| **Session Management**         | Client-side sessions with IndexedDB         |
-| **AI Integration**             | Direct OpenAI API integration for responses |
+| Feature              | Description                                                           |
+| -------------------- | --------------------------------------------------------------------- |
+| **Domain Selector**  | Choose specialized knowledge domains (e.g., General, Medical, SE).    |
+| **Grounded Prompts** | System enriches AI prompts with ground-truth facts from the ontology. |
+| **Concept Tagging**  | AI responses are tagged with key ontology concepts they reference.    |
+| **Real-Time IPC**    | Secure communication between Electron and React for AI responses.     |
 
-### Enhanced Features (Sprint 2)
+### Sprint 2: Visualization & Formal Verification
+*Planned*
 
-| Feature                      | Description                        |
-| ---------------------------- | ---------------------------------- |
-| **Dark/Light Mode**          | Theme toggle for user preference   |
-| **Markdown Rendering**       | Rich text display in chat messages |
-| **Code Syntax Highlighting** | Formatted code blocks in responses |
-| **Export Conversations**     | Download chat history as file      |
-| **Rename Conversations**     | Custom names for chat sessions     |
-
----
-
-## 📐 System Architecture
-
-```
-┌─────────────────┐         WebSocket         ┌─────────────────┐
-│                 │◄───────────────────────────│                 │
-│  React Frontend │                            │  Express Server │
-│                 │───────────────────────────►│                 │
-└─────────────────┘                            └────────┬────────┘
-        │                                               │
-        │                                               │
-        ▼                                               ▼
-┌─────────────────┐                            ┌─────────────────┐
-│    IndexedDB    │                            │   OpenAI API    │
-│ (Client Storage)│                            │   (ChatGPT)     │
-└─────────────────┘                            └─────────────────┘
-```
-
----
-
-## 🔄 WebSocket API Protocols
-
-| Protocol               | Direction       | Purpose                                  |
-| ---------------------- | --------------- | ---------------------------------------- |
-| `session-history`      | Client → Server | Request conversation history for session |
-| `session-details`      | Server → Client | Return session data with conversations   |
-| `conversation-message` | Client → Server | Send message for AI processing           |
-| `conversation-details` | Server → Client | Return updated conversation state        |
-| `conversation-delete`  | Client → Server | Clear all conversations in session       |
-
----
-
-## 📊 State Management
-
-### Actions
-
-| Action                      | Description                  |
-| --------------------------- | ---------------------------- |
-| `setSelectedConversationId` | Set active conversation      |
-| `addMessage`                | Add message to conversation  |
-| `setConversations`          | Update all conversations     |
-| `setConversationHistory`    | Update specific conversation |
-| `deleteConversations`       | Clear all conversations      |
+| Feature                 | Description                                                          |
+| ----------------------- | -------------------------------------------------------------------- |
+| **Knowledge Panel**     | Visual graph displaying active ontology concepts and relationships.  |
+| **Domain Builder**      | Low-code UI for defining new concepts and relationships.             |
+| **Fact Verification**   | AI validates its own claims against the formal knowledge graph.      |
+| **Hallucination Flags** | visual warnings when the AI says something unverified in the domain. |
 
 ---
 
 ## 🚀 Sprint Structure
 
-### Sprint 1: MVP/Prototype (5 Weeks)
+### Sprint 1: Ontology Integration (5 Weeks)
 
-| Week | Phase                      | Deliverable                       |
-| ---- | -------------------------- | --------------------------------- |
-| 1    | Frontend UI                | React component structure         |
-| 2    | Express Server             | WebSocket server setup            |
-| 3    | Sessions                   | Session management implementation |
-| 4    | Server Messaging           | Message routing logic             |
-| 5    | OpenAI Integration         | ChatGPT API connection            |
-| —    | **Sprint 1 Retrospective** | Review & lessons learned          |
+| Week | Phase          | Deliverable                                      |
+| ---- | -------------- | ------------------------------------------------ |
+| 1    | Infrastructure | IPC Setup & Groq API Integration (Free Tier)     |
+| 2    | MLOD Layer 1   | Domain Definitions & Concept Tree implementation |
+| 3    | MLOD Layer 2   | Prompt Enrichment Engine (Logical Injection)     |
+| 4    | UI Systems     | Domain Selector & Concept Tagging interface      |
+| 5    | Testing        | Vitest Integration (100% core logic coverage)    |
 
-**Sprint 1 Goal:** Functional MVP with core chat functionality
+### Sprint 2: Advanced Knowledge Ops (6 Weeks)
 
----
-
-### Sprint 2: Final Product (6 Weeks)
-
-| Week | Phase                      | Deliverable                            |
-| ---- | -------------------------- | -------------------------------------- |
-| 6    | Deployment                 | Production deployment                  |
-| 7    | Architecture Refactor      | Remove Express server dependency       |
-| 8    | UI Enhancements            | Dark/Light mode toggle                 |
-| 9    | Rich Text Support          | Markdown rendering & code highlighting |
-| 10   | Data Management            | Export conversations & rename chats    |
-| 11   | Polish & Testing           | Bug fixes, performance optimization    |
-| —    | **Sprint 2 Retrospective** | Final review & demo                    |
-
-**Sprint 2 Goal:** Production-ready application with enhanced features
+| Week | Phase          | Deliverable                                     |
+| ---- | -------------- | ----------------------------------------------- |
+| 6    | Visualization  | Interactive Knowledge Graph (D3.js integration) |
+| 7    | Low-Code UI    | Domain Builder CRUD (User-defined ontologies)   |
+| 8    | Logical Proofs | Fact Verification Mode toggle & logic           |
+| 9    | UI Alerts      | Hallucination Warning system                    |
+| 10   | Data Output    | Knowledge Export (Structured JSON/RDF)          |
+| 11   | Polish         | UI/UX Refinement & Final Presentation Prep      |
 
 ---
 
 ## 📦 Functional Requirements
 
-1. **FR-01:** User can send text messages and receive AI responses
-2. **FR-02:** User can create new conversations
-3. **FR-03:** User can switch between existing conversations
-4. **FR-04:** User can view conversation history
-5. **FR-05:** User can delete all conversations
-6. **FR-06:** Sessions persist across browser refreshes (IndexedDB)
+- **FR-07:** User can select a knowledge domain to ground the AI's responses.
+- **FR-08:** System enriches the AI system prompt with specific domain facts.
+- **FR-09:** User can define new concepts and relationships via the Domain Builder.
+- **FR-10:** AI responses are automatically tagged with relevant ontology concepts.
+- **FR-11:** User can toggle Fact Verification to validate AI claims against the ontology.
+- **FR-12:** User can export ontology structures alongside conversation history.
 
 ---
 
 ## 🔒 Non-Functional Requirements
 
-1. **NFR-01:** Response time < 3 seconds for AI replies
-2. **NFR-02:** WebSocket connection handles reconnection gracefully
-3. **NFR-03:** IndexedDB storage supports offline history viewing
-4. **NFR-04:** Application is responsive on desktop and mobile
-5. **NFR-05:** Secure API key management for OpenAI credentials
-
----
-
-## ⚠️ Risks & Mitigations
-
-| Risk                     | Impact | Mitigation                      |
-| ------------------------ | ------ | ------------------------------- |
-| OpenAI API rate limits   | High   | Implement request throttling    |
-| WebSocket disconnection  | Medium | Auto-reconnection logic         |
-| IndexedDB storage limits | Low    | Implement data cleanup policies |
-| API key exposure         | High   | Server-side API calls only      |
+- **NFR-01:** Total AI response time < 3 seconds despite ontology lookups.
+- **NFR-04:** Interface is responsive across shared desktop window sizes.
+- **NFR-06:** Ontology lookups and prompt building must complete in < 500ms.
+- **NFR-07:** Domain knowledge (ontology) persists across sessions via IndexedDB.
 
 ---
 
@@ -174,40 +112,22 @@ A real-time conversational AI application that replicates ChatGPT functionality 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                         SPRINT 1 (5 Weeks)                      │
-│                        MVP / Prototype                          │
+│                        Ontology Foundation                      │
 ├─────────────────────────────────────────────────────────────────┤
-│ Week 1: Frontend UI        ████░░░░░░░░░░░░░░░░░░░░             │
-│ Week 2: Express Server     ░░░░████░░░░░░░░░░░░░░░░             │
-│ Week 3: Sessions           ░░░░░░░░████░░░░░░░░░░░░             │
-│ Week 4: Server Messaging   ░░░░░░░░░░░░████░░░░░░░░             │
-│ Week 5: OpenAI Integration ░░░░░░░░░░░░░░░░████░░░░             │
-│         ▼ Sprint 1 Retrospective ▼                              │
+│ Week 1: Infrastructure     ████░░░░░░░░░░░░░░░░░░░░             │
+│ Week 2: MLOD Layer 1       ░░░░████░░░░░░░░░░░░░░░░             │
+│ Week 3: MLOD Layer 2       ░░░░░░░░████░░░░░░░░░░░░             │
+│ Week 4: UI Development     ░░░░░░░░░░░░████░░░░░░░░             │
+│ Week 5: Testing (Vitest)   ░░░░░░░░░░░░░░░░████░░░░             │
 ├─────────────────────────────────────────────────────────────────┤
 │                         SPRINT 2 (6 Weeks)                      │
-│                        Final Product                            │
+│                        Visual Knowledge                         │
 ├─────────────────────────────────────────────────────────────────┤
-│ Week 6:  Deployment        ░░░░░░░░░░░░░░░░░░░░████             │
-│ Week 7:  Refactor          ░░░░░░░░░░░░░░░░░░░░░░░░████         │
-│ Week 8:  UI Enhancements   ░░░░░░░░░░░░░░░░░░░░░░░░░░░░████     │
-│ Week 9:  Rich Text         ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░████ │
-│ Week 10: Data Management   ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
-│ Week 11: Polish & Testing  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
-│         ▼ Sprint 2 Retrospective ▼                              │
+│ Week 6: Visualization      ░░░░░░░░░░░░░░░░░░░░████             │
+│ Week 7: Domain Builder     ░░░░░░░░░░░░░░░░░░░░░░░░████         │
+│ Week 8: Verification       ░░░░░░░░░░░░░░░░░░░░░░░░░░░░████     │
+│ Week 9: Hallucination Flags░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░████ │
+│ Week 10: Data Export       ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+│ Week 11: Polish & Demo     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
 └─────────────────────────────────────────────────────────────────┘
 ```
-
----
-
-## ✅ Success Criteria
-
-### Sprint 1 (MVP)
-- [ ] Functional chat interface with real-time messaging
-- [ ] Successful OpenAI API integration
-- [ ] Persistent conversation storage with IndexedDB
-
-### Sprint 2 (Final)
-- [ ] Deployed and accessible application
-- [ ] Clean architecture after server refactor
-- [ ] Dark/Light mode implemented
-- [ ] Markdown & code highlighting working
-- [ ] Export and rename conversation features complete
