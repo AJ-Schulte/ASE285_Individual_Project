@@ -72,6 +72,7 @@ export const sendMessageToAI = async (messages) => {
     return response?.choices?.[0]?.message?.content ?? "No response from AI";
   } catch (error) {
     console.error("OpenAI API error:", error);
-    throw new Error("Failed to get response from AI");
+    const errorMsg = error.error?.message || error.message || "Failed to get response from AI";
+    throw new Error(errorMsg);
   }
 };

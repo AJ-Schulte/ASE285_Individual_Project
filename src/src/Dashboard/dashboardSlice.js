@@ -1,27 +1,46 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
 import { sendMessageToAI } from "../services/openaiService";
+import { buildSystemPrompt, extractConceptTags } from "../services/ontologyService";
 
 // Async thunk to send message and get AI response
 export const sendConversationMessage = createAsyncThunk(
   'dashboard/sendMessage',
-  async ({ message, conversationId, conversationMessages }) => {
-    // Build message history for OpenAI
-    const messages = conversationMessages.map(m => ({
-      role: m.aiMessage ? 'assistant' : 'user',
-      content: m.content
-    }));
+  async ({ message, conversationId, conversationMessages, domainId }) => {
+    // 1. Build ground-truth system message from ontology
+    const systemPrompt = buildSystemPrompt(domainId);
+
+    // 2. Build message history for OpenAI
+    const messages = [
+      { role: 'system', content: systemPrompt }
+    ];
+
+    conversationMessages.forEach(m => {
+      // Avoid duplicating the message that was just added to the store
+      if (m.id !== message.id) {
+        messages.push({
+          role: m.aiMessage ? 'assistant' : 'user',
+          content: m.content
+        });
+      }
+    });
 
     // Add new user message
     messages.push({ role: 'user', content: message.content });
 
-    // Get AI response
+    console.log("Sending to AI with Ontology context:", messages);
+
+    // 3. Get AI response
     const aiContent = await sendMessageToAI(messages);
+
+    // 4. Extract concept tags from the response
+    const conceptTags = extractConceptTags(aiContent, domainId);
 
     const aiMessage = {
       content: aiContent,
       id: uuid(),
       aiMessage: true,
+      conceptTags: conceptTags,
     };
 
     return { message, aiMessage, conversationId };

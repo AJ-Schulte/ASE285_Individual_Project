@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 
 import Messages from "./Messages.jsx";
 import NewMessageInput from "./NewMessageInput.jsx";
+import DomainSelector from "../DomainSelector/DomainSelector.jsx";
 
 const ChatLogo = () => {
   return (
@@ -23,6 +24,7 @@ const Chat = () => {
         <ChatLogo />
       ) : (
         <div className="chat_selected_container">
+          <DomainSelector />
           <Messages />
           <NewMessageInput />
         </div>

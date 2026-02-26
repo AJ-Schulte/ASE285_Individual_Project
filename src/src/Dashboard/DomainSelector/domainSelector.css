@@ -1,0 +1,60 @@
+.domain_selector_container {
+    width: 100%;
+    padding: 12px 24px;
+    background-color: #ffffff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    z-index: 10;
+}
+
+.domain_selector_label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #202123;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.domain_selector_dropdown {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #e5e5e5;
+    background-color: #f9f9f9;
+    font-size: 14px;
+    font-weight: 500;
+    color: #343541;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.domain_selector_dropdown:hover {
+    border-color: #acacac;
+}
+
+.domain_description {
+    font-size: 12px;
+    color: #8e8ea0;
+    font-style: italic;
+    flex-grow: 1;
+}
+
+.concept_tag_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.concept_tag {
+    background-color: #e7f3ff;
+    color: #007bff;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 500;
+    border: 1px solid #b3d7ff;
+}

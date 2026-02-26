@@ -16,6 +16,8 @@ const NewMessageInput = () => {
   const conversations = useSelector((state) => state.dashboard.conversations);
   const loading = useSelector((state) => state.dashboard.loading);
 
+  const { selectedDomainId } = useSelector((state) => state.ontology);
+
   const selectedConversation = conversations.find(
     (c) => c.id === selectedConversationId
   );
@@ -45,10 +47,11 @@ const NewMessageInput = () => {
     const conversationMessages = conversation ? conversation.messages : [];
 
     // Send message to AI
-    dispatch(sendConversationMessage({ 
-      message, 
+    dispatch(sendConversationMessage({
+      message,
       conversationId,
-      conversationMessages 
+      conversationMessages,
+      domainId: selectedDomainId
     }));
 
     // Reset input

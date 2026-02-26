@@ -27,6 +27,7 @@ const Messages = () => {
           content={m.content}
           aiMessage={m.aiMessage}
           animate={index === conversation.messages.length - 1 && m.aiMessage}
+          conceptTags={m.conceptTags}
         />
       ))}
       <div ref={scrollRef} />

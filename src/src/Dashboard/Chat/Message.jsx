@@ -23,7 +23,7 @@ const SlowText = (props) => {
   return <span>{placeholder}</span>;
 };
 
-const Message = ({ content, aiMessage, animate }) => {
+const Message = ({ content, aiMessage, animate, conceptTags }) => {
   return (
     <div
       className="message_container"
@@ -32,9 +32,20 @@ const Message = ({ content, aiMessage, animate }) => {
       <div className="message_avatar_container">
         {aiMessage ? <FcMindMap /> : <GrUser />}
       </div>
-      <p className="message_text">
-        {animate ? <SlowText speed={20} text={content} /> : content}
-      </p>
+      <div className="message_text_container">
+        <p className="message_text">
+          {animate ? <SlowText speed={20} text={content} /> : content}
+        </p>
+        {conceptTags && conceptTags.length > 0 && (
+          <div className="concept_tag_container">
+            {conceptTags.map((tag) => (
+              <span key={tag} className="concept_tag">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
