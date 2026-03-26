@@ -7,6 +7,7 @@ describe('dashboardSlice', () => {
         selectedConversationId: null,
         loading: false,
         error: null,
+        verificationMode: false,
     };
 
     it('should handle initial state', () => {

@@ -231,3 +231,13 @@
         max-width: calc(100% - 50px);
     }
 }
+
+/* ── Domain Builder sidebar button ────────────── */
+
+.sidebar_builder_btn {
+    margin-top: auto;
+    margin-bottom: 46px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 10px;
+    cursor: pointer;
+}

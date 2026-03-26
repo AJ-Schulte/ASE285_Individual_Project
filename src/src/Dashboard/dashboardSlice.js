@@ -2,11 +2,12 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
 import { sendMessageToAI } from "../services/openaiService";
 import { buildSystemPrompt, extractConceptTags } from "../services/ontologyService";
+import { verifyClaims } from "../services/verificationService";
 
 // Async thunk to send message and get AI response
 export const sendConversationMessage = createAsyncThunk(
   'dashboard/sendMessage',
-  async ({ message, conversationId, conversationMessages, domainId }) => {
+  async ({ message, conversationId, conversationMessages, domainId, verificationMode }) => {
     // 1. Build ground-truth system message from ontology
     const systemPrompt = buildSystemPrompt(domainId);
 
@@ -36,11 +37,18 @@ export const sendConversationMessage = createAsyncThunk(
     // 4. Extract concept tags from the response
     const conceptTags = extractConceptTags(aiContent, domainId);
 
+    // 5. Run fact verification if enabled
+    let verificationResults = null;
+    if (verificationMode) {
+      verificationResults = verifyClaims(aiContent, domainId);
+    }
+
     const aiMessage = {
       content: aiContent,
       id: uuid(),
       aiMessage: true,
       conceptTags: conceptTags,
+      verificationResults: verificationResults,
     };
 
     return { message, aiMessage, conversationId };
@@ -52,6 +60,7 @@ const initialState = {
   selectedConversationId: null,
   loading: false,
   error: null,
+  verificationMode: false,
 };
 
 const dashboardSlice = createSlice({
@@ -90,6 +99,9 @@ const dashboardSlice = createSlice({
     saveConversations: (state) => {
       // Save conversations to localStorage
       localStorage.setItem('conversations', JSON.stringify(state.conversations));
+    },
+    toggleVerificationMode: (state) => {
+      state.verificationMode = !state.verificationMode;
     },
   },
   extraReducers: (builder) => {
@@ -137,6 +149,7 @@ export const {
   deleteConversations,
   loadConversations,
   saveConversations,
+  toggleVerificationMode,
 } = dashboardSlice.actions;
 
 export default dashboardSlice.reducer;

@@ -15,6 +15,7 @@ const NewMessageInput = () => {
 
   const conversations = useSelector((state) => state.dashboard.conversations);
   const loading = useSelector((state) => state.dashboard.loading);
+  const verificationMode = useSelector((state) => state.dashboard.verificationMode);
 
   const { selectedDomainId } = useSelector((state) => state.ontology);
 
@@ -51,7 +52,8 @@ const NewMessageInput = () => {
       message,
       conversationId,
       conversationMessages,
-      domainId: selectedDomainId
+      domainId: selectedDomainId,
+      verificationMode,
     }));
 
     // Reset input

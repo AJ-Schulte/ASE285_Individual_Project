@@ -1,0 +1,460 @@
+/* ── Backdrop ─────────────────────────────────────── */
+
+.db-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: db-fade-in 0.2s ease;
+}
+
+@keyframes db-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Modal ────────────────────────────────────────── */
+
+.db-modal {
+  width: 560px;
+  max-width: 92vw;
+  max-height: 85vh;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: db-slide-up 0.25s ease;
+}
+
+@keyframes db-slide-up {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── Header ───────────────────────────────────────── */
+
+.db-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.db-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.db-title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.db-back-btn {
+  border: none;
+  background: #f1f5f9;
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #475569;
+  transition: background 0.15s;
+}
+
+.db-back-btn:hover {
+  background: #e2e8f0;
+}
+
+.db-close-btn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #94a3b8;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.db-close-btn:hover {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+/* ── Body ─────────────────────────────────────────── */
+
+.db-body {
+  padding: 20px 24px 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.db-form-body {
+  gap: 0;
+}
+
+.db-subtitle {
+  margin: 0 0 16px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* ── Domain List ──────────────────────────────────── */
+
+.db-domain-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.db-domain-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #f8fafc;
+  transition: border-color 0.2s;
+}
+
+.db-domain-card:hover {
+  border-color: #cbd5e1;
+}
+
+.db-domain-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.db-domain-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.db-domain-desc {
+  font-size: 12px;
+  color: #64748b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.db-domain-meta {
+  font-size: 11px;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+.db-domain-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 12px;
+}
+
+.db-builtin-badge {
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: #f1f5f9;
+  color: #94a3b8;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.db-action-btn {
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.db-edit-btn {
+  background: #eff6ff;
+  color: #3b82f6;
+}
+
+.db-edit-btn:hover {
+  background: #dbeafe;
+}
+
+.db-delete-btn {
+  background: #fef2f2;
+  color: #ef4444;
+}
+
+.db-delete-btn:hover {
+  background: #fee2e2;
+}
+
+.db-create-btn {
+  width: 100%;
+  padding: 12px;
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  background: transparent;
+  color: #6366f1;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.db-create-btn:hover {
+  border-color: #6366f1;
+  background: #f5f3ff;
+}
+
+/* ── Form Fields ──────────────────────────────────── */
+
+.db-section {
+  margin-bottom: 18px;
+}
+
+.db-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.db-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #1e293b;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.db-input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.db-input-sm {
+  padding: 8px 10px;
+  font-size: 13px;
+}
+
+.db-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #1e293b;
+  outline: none;
+  resize: vertical;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.db-textarea:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* ── Chip List (Concepts) ─────────────────────────── */
+
+.db-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.db-chip {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 20px;
+  font-size: 12px;
+  color: #1d4ed8;
+  font-weight: 500;
+}
+
+.db-chip-name {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.db-chip-remove {
+  border: none;
+  background: transparent;
+  color: #93c5fd;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.15s;
+}
+
+.db-chip-remove:hover {
+  color: #ef4444;
+}
+
+/* ── Inline Form (Add Concept / Relationship) ─────── */
+
+.db-inline-form {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.db-rel-form {
+  flex-wrap: wrap;
+}
+
+.db-rel-form .db-input-sm {
+  flex: 1;
+  min-width: 80px;
+}
+
+.db-add-btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #6366f1;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.db-add-btn:hover {
+  background: #4f46e5;
+}
+
+/* ── Relationship List ────────────────────────────── */
+
+.db-rel-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.db-rel-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #334155;
+}
+
+.db-rel-pred {
+  color: #6366f1;
+  font-weight: 600;
+}
+
+/* ── Save Button ──────────────────────────────────── */
+
+.db-save-btn {
+  width: 100%;
+  padding: 13px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+}
+
+.db-save-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.35);
+}
+
+.db-save-btn:active {
+  transform: translateY(0);
+}
+
+/* ── View Mode Specific Styles ───────────────────── */
+
+.db-view-btn {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.db-view-btn:hover {
+  background: #e2e8f0;
+  color: #475569;
+}
+
+.db-input-readonly,
+.db-textarea-readonly {
+  background: #f8fafc;
+  border-color: #f1f5f9;
+  color: #334155;
+  cursor: default;
+}
+
+.db-input-readonly:focus,
+.db-textarea-readonly:focus {
+  border-color: #f1f5f9;
+  box-shadow: none;
+}
+
+.db-chip-readonly {
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+  color: #64748b;
+}
+
+.db-rel-item-readonly {
+  background: #f8fafc;
+  border-color: #f1f5f9;
+  color: #64748b;
+}
+
+.db-rel-item-readonly em {
+  color: #94a3b8;
+}
+

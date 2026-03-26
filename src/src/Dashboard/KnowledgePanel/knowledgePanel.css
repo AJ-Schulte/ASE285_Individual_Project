@@ -1,0 +1,293 @@
+/* ── Toggle Button ─────────────────────────────── */
+
+.kp-toggle-btn {
+  position: fixed;
+  top: 14px;
+  right: 18px;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  color: #475569;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.kp-toggle-btn:hover {
+  background: #f1f5f9;
+  border-color: #6366f1;
+  color: #6366f1;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.15);
+}
+
+.kp-toggle-active {
+  background: #6366f1;
+  color: #fff;
+  border-color: #6366f1;
+}
+
+.kp-toggle-active:hover {
+  background: #4f46e5;
+  color: #fff;
+}
+
+.kp-toggle-text {
+  display: none;
+}
+
+@media (min-width: 950px) {
+  .kp-toggle-text {
+    display: inline;
+  }
+}
+
+/* ── Overlay Container ────────────────────────────── */
+
+.kp-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 100vh;
+  z-index: 150;
+  pointer-events: none;
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.kp-overlay-open {
+  width: 380px;
+  pointer-events: auto;
+}
+
+@media (max-width: 500px) {
+  .kp-overlay-open {
+    width: 100vw;
+  }
+}
+
+/* ── Panel ────────────────────────────────────────── */
+
+.kp-panel {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(175deg, #f8fafc 0%, #f1f5f9 100%);
+  border-left: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Header ───────────────────────────────────────── */
+
+.kp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e2e8f0;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(6px);
+}
+
+.kp-header-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.kp-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1e293b;
+  letter-spacing: -0.3px;
+}
+
+.kp-domain-badge {
+  font-size: 11px;
+  padding: 2px 10px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.kp-close-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #94a3b8;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.kp-close-btn:hover {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+/* ── SVG Graph ────────────────────────────────────── */
+
+.kp-svg {
+  flex: 1;
+  width: 100%;
+}
+
+.kp-link {
+  stroke: #cbd5e1;
+  stroke-width: 1.5;
+  stroke-dasharray: 5, 3;
+}
+
+.kp-link-label {
+  font-size: 10px;
+  fill: #94a3b8;
+  font-weight: 500;
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+.kp-node {
+  cursor: pointer;
+  transition: r 0.15s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.12));
+}
+
+.kp-node:hover {
+  r: 24;
+}
+
+.kp-node-label {
+  font-size: 11px;
+  fill: #334155;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+/* ── Empty State ──────────────────────────────────── */
+
+.kp-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 30px;
+  text-align: center;
+}
+
+.kp-empty-icon {
+  font-size: 40px;
+  margin: 0 0 12px;
+}
+
+.kp-empty-text {
+  font-size: 14px;
+  color: #475569;
+  margin: 0 0 8px;
+}
+
+.kp-empty-hint {
+  font-size: 12px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* ── Legend ────────────────────────────────────────── */
+
+.kp-legend {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 20px;
+  border-top: 1px solid #e2e8f0;
+  background: rgba(255, 255, 255, 0.6);
+  flex-wrap: wrap;
+}
+
+.kp-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.kp-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.kp-legend-concept {
+  background: #6366f1;
+}
+
+.kp-legend-relation {
+  background: #14b8a6;
+}
+
+.kp-legend-hint {
+  font-size: 10px;
+  color: #94a3b8;
+  font-style: italic;
+  flex-basis: 100%;
+}
+
+/* ── Tooltip ──────────────────────────────────────── */
+
+.kp-tooltip {
+  position: fixed;
+  z-index: 300;
+  max-width: 240px;
+  padding: 12px 16px;
+  background: #1e293b;
+  color: #f1f5f9;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+  animation: kp-tooltip-in 0.15s ease;
+}
+
+.kp-tooltip-name {
+  font-size: 13px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+  color: #a5b4fc;
+}
+
+.kp-tooltip-desc {
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 0;
+  color: #cbd5e1;
+}
+
+@keyframes kp-tooltip-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

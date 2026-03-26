@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
+import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import Message from "./Message.jsx";
 
@@ -28,6 +29,7 @@ const Messages = () => {
           aiMessage={m.aiMessage}
           animate={index === conversation.messages.length - 1 && m.aiMessage}
           conceptTags={m.conceptTags}
+          verificationResults={m.verificationResults}
         />
       ))}
       <div ref={scrollRef} />

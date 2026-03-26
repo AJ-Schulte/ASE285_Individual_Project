@@ -5,7 +5,7 @@ import DeleteConversationsButton from "./DeleteConversationsButton";
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedConversationId } from "../dashboardSlice";
 
-const Sidebar = () => {
+const Sidebar = ({ onOpenDomainBuilder }) => {
   const dispatch = useDispatch();
 
   const conversations = useSelector((state) => state.dashboard.conversations);
@@ -25,6 +25,18 @@ const Sidebar = () => {
           handleSetSelectedChat={handleSetSelectedChat}
         />
       ))}
+
+      {/* Domain Builder button */}
+      <div
+        className="list_item sidebar_builder_btn"
+        onClick={onOpenDomainBuilder}
+      >
+        <div className="list_item_icon">
+          <span style={{ fontSize: "14px" }}>🧩</span>
+        </div>
+        <p className="list_item_text">Domain Builder</p>
+      </div>
+
       <DeleteConversationsButton />
     </div>
   );

@@ -8,6 +8,7 @@
     gap: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
     z-index: 10;
+    flex-wrap: wrap;
 }
 
 .domain_selector_label {
@@ -57,4 +58,114 @@
     border-radius: 12px;
     font-weight: 500;
     border: 1px solid #b3d7ff;
+}
+
+/* ── Verification Toggle ────────────────────────── */
+
+.vr-toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.vr-toggle-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.vr-toggle-icon {
+    font-size: 14px;
+}
+
+.vr-toggle-btn {
+    width: 40px;
+    height: 22px;
+    border: none;
+    border-radius: 12px;
+    background: #cbd5e1;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.25s ease;
+    padding: 0;
+}
+
+.vr-toggle-on {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+}
+
+.vr-toggle-knob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    transition: transform 0.25s ease;
+}
+
+.vr-toggle-on .vr-toggle-knob {
+    transform: translateX(18px);
+}
+
+/* ── Verification Sentences ─────────────────────── */
+
+.vr-text {
+    line-height: 1.8;
+}
+
+.vr-sentence {
+    position: relative;
+    display: inline;
+    padding: 2px 0;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.vr-verified {
+    border-bottom-color: #22c55e;
+}
+
+.vr-unverified {
+    border-bottom-color: #f59e0b;
+    background: rgba(245, 158, 11, 0.06);
+}
+
+.vr-icon {
+    font-size: 12px;
+    margin-right: 2px;
+}
+
+.vr-tip {
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 0;
+    z-index: 100;
+    white-space: nowrap;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 6px 12px;
+    background: #1e293b;
+    color: #f1f5f9;
+    font-size: 11px;
+    font-weight: 500;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    pointer-events: none;
+    animation: vr-tip-in 0.15s ease;
+}
+
+@keyframes vr-tip-in {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
 }

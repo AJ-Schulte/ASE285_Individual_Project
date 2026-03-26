@@ -1,17 +1,19 @@
-import { domains } from "./ontologyData";
+import { domains as builtInDomains } from "./ontologyData";
 
 /**
- * Returns all available domains
+ * Returns all available domains (built-in + user-defined)
  */
 export const getDomains = () => {
-    return domains;
+    const userDomains = JSON.parse(localStorage.getItem("userDomains") || "[]");
+    return [...builtInDomains, ...userDomains];
 };
 
 /**
- * Returns a specific domain by ID
+ * Returns a specific domain by ID (searching both built-in and user-defined)
  */
 export const getDomainById = (id) => {
-    return domains.find((d) => d.id === id) || domains[0];
+    const allDomains = getDomains();
+    return allDomains.find((d) => d.id === id) || allDomains[0];
 };
 
 /**

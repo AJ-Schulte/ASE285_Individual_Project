@@ -9,7 +9,14 @@ import React from 'react';
 // Simplified store for testing
 const createTestStore = () => configureStore({
     reducer: {
-        ontology: ontologyReducer
+        ontology: ontologyReducer,
+        dashboard: () => ({
+            selectedConversationId: null,
+            conversations: [],
+            loading: false,
+            error: null,
+            verificationMode: false,
+        }),
     }
 });
 
