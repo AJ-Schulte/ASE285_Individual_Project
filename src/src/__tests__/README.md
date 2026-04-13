@@ -25,7 +25,7 @@ npx vitest run src/__tests__/acceptance
 
 ## Test Organization
 
-Tests are organized into three categories:
+Tests are organized into four categories:
 
 ### Unit Tests (`unit/`) — 40 tests
 
@@ -39,6 +39,14 @@ Isolated tests for individual functions, reducers, and components. No cross-laye
 | `dashboardSlice.test.js`     | 4     | Redux reducer: conversations, messages               |
 | `Message.test.jsx`           | 6     | Message rendering, verification badges, tooltips     |
 | `Sidebar.test.jsx`           | 3     | Sidebar rendering, conversation list, button events  |
+
+### Regression Tests (`regression/`) — 23 tests
+
+Guards against bugs in edge cases, null handling, and complex logic boundaries.
+
+| File                         | Tests | What it covers                                      |
+| ---------------------------- | ----- | --------------------------------------------------- |
+| `edgeCases.test.js`          | 23    | Null inputs, boundary logic, regex safety, Redux delete |
 
 ### Integration Tests (`integration/`) — 6 tests
 
@@ -56,7 +64,7 @@ End-to-end tests that verify complete user stories and feature requirements.
 | File                         | Tests | What it covers                                      |
 | ---------------------------- | ----- | --------------------------------------------------- |
 | `DomainBuilder.test.jsx`     | 10    | Full CRUD: create, view, edit domains + persistence  |
-| `AppIntegration.test.jsx`    | 2     | Full flow: send message → AI response → verification |
+| `AppIntegration.test.jsx`    | 2     | Full flow: send message → conversation management    |
 
 ---
 
@@ -65,9 +73,10 @@ End-to-end tests that verify complete user stories and feature requirements.
 | Category         | Count |
 | ---------------- | ----- |
 | Unit             | 40    |
+| Regression       | 23    |
 | Integration      | 6     |
 | Acceptance       | 12    |
-| **Total**        | **58**|
+| **Total**        | **81**|
 
 ---
 
