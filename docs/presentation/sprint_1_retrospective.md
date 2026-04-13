@@ -1,85 +1,95 @@
-# Sprint 1 Retrospective & Sprint 2 Planning
-**Project:** Ontology-Aware AI Knowledge Assistant
-**Date:** February 26, 2026
-**Individual:** AJ Schulte
+---
+marp: true
+size: 16:9
+paginate: true
+title: Sprint 1 Retrospective - Chat GPT Clone Ontology Ver.
+theme: default
+backgroundColor: white
+---
+
+# Chat GPT Clone - Ontology Ver.
+## Sprint 1 Individual Project Report
+
+**Ontology-Aware AI Knowledge Assistant**
+
+ASE285 – Software Engineering
 
 ---
 
-## 📊 1. Sprint 1 Quantitative Metrics
+## Sprint 1 Retrospective
 
-| Metric                                 | Value      |
-| -------------------------------------- | ---------- |
-| **Lines of Code (LoC) Added/Modified** | ~621 lines |
-| **Total Features for Sprint 1**        | 3          |
-| **Features Completed**                 | 3 (100%)   |
-| **Total Requirements for Sprint 1**    | 5          |
-| **Requirements Completed**             | 5 (100%)   |
-| **Burndown Rate (Features/Reqs)**      | **100%**   |
+- **Number of individual features completed:** __6__
+- **Number of individual requirements completed:** __15__
+- **Individual burndown rate (%):** __100__
 
 ---
 
-## ✅ 2. What Went Well
+## Sprint 1 Features Delivered (Feb 1 – Mar 5, 2026)
 
-*   **Technology Migration**: Successfully shifted from a paid OpenAI model to a free **Groq** tier without losing functionality, ensuring the project remains cost-effective.
-*   **Architecture Stability**: Refactored the app to use Electron's **Main Process** for API calls, resolving browser sandbox restrictions.
-*   **Automated Testing**: Integrated **Vitest** and wrote 17 tests, providing a solid safety net for future development.
-*   **UI Polish**: Achieved a clean, "locked" 100vh layout that prevents unnecessary scrolling.
-
----
-
-## ⚠️ 3. What Went Wrong (Challenges)
-
-*   **External Service Deprecation**: The original Groq model was decommissioned mid-sprint, requiring an emergency `.env` update.
-*   **Generic Error Reporting**: Initial error messages were too vague, making it difficult to diagnose model support issues.
+| Feature                         | Date     | Requirements                  |
+| ------------------------------- | -------- | ----------------------------- |
+| Electron IPC & Groq Integration | Feb 1    | FR-01, FR-05, FR-06, NFR-03   |
+| Conversation Management         | Feb 8    | FR-02, FR-03, FR-04           |
+| MLOD Domain Definitions         | Feb 8    | FR-07, NFR-05, NFR-07         |
+| Ontology-Grounded Prompts       | Feb 15   | FR-08, NFR-06                 |
+| Domain Selector & Concept Tags  | Feb 22   | FR-07, FR-10, NFR-04          |
+| Automated Testing (Vitest)      | Mar 1    | NFR-02                        |
 
 ---
 
-## 🔍 4. Analysis & Improvement Plan
+### What Went Wrong:
+- External Groq model was decommissioned mid-sprint, requiring an emergency `.env` update
+- Initial error messages were too vague to diagnose model support issues
 
-Moving forward, the architecture is modular and ready for growth. The biggest risk is external API stability.
-**Improvement Plan:**
-- Implement more descriptive UI-based error handling for the AI service.
-- Maintain a separate mock-service for testing when APIs are down.
-
----
-
-## 🎯 5. Individual Sprint 2 Goals
-
-- **Interactive Knowledge Panel**: Build a visual graph side panel using MLOD Layer 2/3 data (Concepts & Relationships).
-- **Low-Code Domain Builder**: Implement a form-based UI for users to create and edit their own ontologies without technical knowledge.
-- **Fact Verification & Hallucination Warnings**: Add logic to verify AI claims against the ontology and flag unverified statements.
+### What Went Well:
+- Shifted from paid OpenAI to free Groq tier without losing functionality
+- Refactored app to use Electron Main Process for API calls (resolving sandbox restrictions)
+- Integrated Vitest with 17 passing tests
+- Achieved clean, locked 100vh layout
 
 ---
 
-##  6. Individual Sprint 2 Metrics
-
-- **Number of team features planned for this sprint**: **4**
-  - (Knowledge Panel, Domain Builder, Fact Verification Mode, Knowledge Export)
-- **Number of team requirements planned for this sprint**: **5**
-  - (FR-09, FR-11, FR-12, NFR-01 polish, NFR-04 responsiveness)
+### Analysis & Improvement Plan:
+- Implement more descriptive UI-based error handling for the AI service
+- Maintain a separate mock-service for testing when APIs are down
+- Architecture is modular and ready for Sprint 2 feature growth
 
 ---
 
-## 📅 7. Updated Individual Timeline and Milestones
+### Sprint 2 Goals
 
-- **Week 1**: Implement Visual Knowledge Panel (D3.js or react-force-graph Integration).
-- **Week 2**: Build Domain Builder UI and Redux state for user-defined ontologies (MLOD Layer 1).
-- **Week 3**: Implement Fact Verification Logic and "Hallucination Warning" UI indicators.
-- **Week 4**: Implement Knowledge Export (JSON), final bug fixes, UI/UX polish, and final documentation.
-
----
-
-## 🔄 8. Any Additional Changes from the Initial Plan
-
-- **Free Tier Focus**: Formally committed to Groq/OpenRouter compatibility to allow the project to be run without a paid API subscription.
-- **Test-Driven Foundation**: Added Vitest as a core requirement for all new logic, which was not in the original scope.
+- Implement Interactive Knowledge Panel with D3.js graph visualization
+- Build Domain Builder CRUD modal for user-defined ontologies
+- Add Fact Verification with relationship-level triplet validation
+- Implement Knowledge Export to structured JSON
 
 ---
 
-## 📌 9. Key Individual Dates
+### Sprint 2 Metrics:
 
-- **Individual milestones**:
-  - **Mar 5**: Visual Knowledge Panel Prototype
-  - **Mar 12**: Domain Builder CRUD complete
-  - **Mar 19**: Fact Verification Logic stable
-  - **Mar 26**: Final Project Handover/Demo
+- **Number of individual features planned:** __6__
+- **Number of individual requirements planned:** __7__
+
+---
+
+### Sprint 2 Features Planned (Mar 15 – Apr 25, 2026)
+
+| Feature                            | Date     | Requirements         |
+| ---------------------------------- | -------- | -------------------- |
+| Interactive Knowledge Panel (D3)   | Mar 15   | FR-09, NFR-04        |
+| Domain Builder (CRUD Modal)        | Mar 22   | FR-09, NFR-07        |
+| Fact Verification & Hallucination  | Mar 29   | FR-11, NFR-01        |
+| Knowledge Export (JSON)            | Apr 5    | FR-12                |
+| Full Project Testing               | Apr 12   | NFR-02               |
+| UI/UX Polish & Final Docs         | Apr 19   | NFR-04               |
+
+---
+
+### Updated Timeline:
+
+- **Week 1:** Implement Knowledge Panel (D3.js force-directed graph)
+- **Week 2:** Build Domain Builder CRUD modal + Redux state
+- **Week 3:** Implement Fact Verification logic + Hallucination Warnings UI
+- **Week 4:** Implement Knowledge Export (JSON) via Electron native save dialog
+- **Week 5:** Full project testing (58+ tests) + UI/UX polish
+- **Week 6:** Final documentation and demo prep

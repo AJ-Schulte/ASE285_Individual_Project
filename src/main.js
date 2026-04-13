@@ -1,5 +1,6 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
+const fs = require('fs');
 require('dotenv').config(); // Load .env at startup
 
 let openaiClient = null;
@@ -84,6 +85,29 @@ ipcMain.handle('ai-send-message', async (event, messages) => {
     // Return the actual error message from the provider if available
     const errorMsg = err.error?.message || err.message || "Failed to get response from AI";
     throw new Error(errorMsg);
+  }
+});
+
+// Handle file save request from renderer
+ipcMain.handle('save-file', async (event, content, defaultPath) => {
+  const { filePath, canceled } = await dialog.showSaveDialog({
+    defaultPath: defaultPath || 'ontology_export.json',
+    filters: [
+      { name: 'JSON Files', extensions: ['json'] },
+      { name: 'All Files', extensions: ['*'] }
+    ]
+  });
+
+  if (canceled || !filePath) {
+    return { success: false, canceled: true };
+  }
+
+  try {
+    fs.writeFileSync(filePath, content, 'utf-8');
+    return { success: true, filePath };
+  } catch (err) {
+    console.error('Failed to save file:', err);
+    throw err;
   }
 });
 

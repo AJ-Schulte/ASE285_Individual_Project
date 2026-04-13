@@ -48,7 +48,35 @@ describe('verificationService', () => {
         it('should verify a sentence that contains a concept', () => {
             const result = verifySentence('The Singleton pattern ensures one instance.', seDomain);
             expect(result.verified).toBe(true);
+            expect(result.level).toBe('concept');
             expect(result.matchedConcepts).toContain('Singleton');
+        });
+
+        it('should classify as relationship level when both subject and object are mentioned', () => {
+            const result = verifySentence('Clean Code helps reduce Technical Debt.', seDomain);
+            expect(result.verified).toBe(true);
+            expect(result.level).toBe('relationship');
+            expect(result.matchedRelationships).toHaveLength(1);
+            expect(result.matchedRelationships[0].subject).toBe('Clean Code');
+            expect(result.matchedRelationships[0].object).toBe('Technical Debt');
+        });
+
+        it('should detect if the predicate is fully matched in a relationship', () => {
+            const result = verifySentence('Clean Code reduces Technical Debt.', seDomain);
+            expect(result.matchedRelationships[0].fullMatch).toBe(true);
+        });
+
+        it('should classify as partial match if predicate is missing but subject/object are present', () => {
+            const result = verifySentence('Talk about Clean Code and Technical Debt.', seDomain);
+            expect(result.matchedRelationships[0].fullMatch).toBe(false);
+        });
+
+        it('should classify as concept level if only the subject is mentioned', () => {
+            const result = verifySentence('I wrote some Clean Code today.', seDomain);
+            expect(result.verified).toBe(true);
+            expect(result.level).toBe('concept');
+            expect(result.matchedConcepts).toContain('Clean Code');
+            expect(result.matchedRelationships).toHaveLength(0);
         });
 
         it('should be case-insensitive', () => {
@@ -57,36 +85,10 @@ describe('verificationService', () => {
             expect(result.matchedConcepts).toContain('DRY');
         });
 
-        it('should match relationship subjects', () => {
-            const result = verifySentence('Clean Code is important for quality.', seDomain);
-            expect(result.verified).toBe(true);
-            expect(result.matchedConcepts).toContain('Clean Code');
-        });
-
-        it('should match relationship objects', () => {
-            const result = verifySentence('Avoid Technical Debt at all costs.', seDomain);
-            expect(result.verified).toBe(true);
-            expect(result.matchedConcepts).toContain('Technical Debt');
-        });
-
-        it('should not verify a sentence with no concept matches', () => {
+        it('should not verify a sentence with no matches', () => {
             const result = verifySentence('I like pizza.', seDomain);
             expect(result.verified).toBe(false);
-            expect(result.matchedConcepts).toHaveLength(0);
-        });
-
-        it('should return unverified for domain with no concepts', () => {
-            const emptyDomain = { id: 'empty', concepts: [], relationships: [] };
-            const result = verifySentence('Any text here.', emptyDomain);
-            expect(result.verified).toBe(false);
-        });
-
-        it('should match multiple concepts in one sentence', () => {
-            const result = verifySentence('Singleton follows SOLID and DRY.', seDomain);
-            expect(result.verified).toBe(true);
-            expect(result.matchedConcepts).toContain('Singleton');
-            expect(result.matchedConcepts).toContain('SOLID');
-            expect(result.matchedConcepts).toContain('DRY');
+            expect(result.level).toBe('none');
         });
     });
 

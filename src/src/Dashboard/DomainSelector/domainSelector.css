@@ -128,11 +128,17 @@
     display: inline;
     padding: 2px 0;
     border-bottom: 2px solid transparent;
-    transition: border-color 0.2s, background 0.2s;
+    transition: all 0.2s ease;
 }
 
-.vr-verified {
+.vr-rel-verified {
+    border-bottom-color: #6366f1;
+    background: rgba(99, 102, 241, 0.05);
+}
+
+.vr-concept-verified {
     border-bottom-color: #22c55e;
+    background: rgba(34, 197, 94, 0.03);
 }
 
 .vr-unverified {

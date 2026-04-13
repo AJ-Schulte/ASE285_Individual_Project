@@ -5,6 +5,7 @@ import {
   updateDomain,
   deleteDomain,
 } from "../../ontologySlice";
+import { BsDownload } from "react-icons/bs";
 import "./domainBuilder.css";
 
 const EMPTY_DOMAIN = {
@@ -75,8 +76,21 @@ const DomainBuilder = ({ isOpen, onClose }) => {
   };
 
   const handleDelete = (domainId) => {
-    if (builtInIds.includes(domainId)) return;
     dispatch(deleteDomain(domainId));
+  };
+
+  const handleExport = async (domain) => {
+    const content = JSON.stringify(domain, null, 2);
+    const fileName = `${domain.name.toLowerCase().replace(/\s+/g, "_")}_ontology.json`;
+    
+    try {
+      const result = await window.electron.saveFile(content, fileName);
+      if (result.success) {
+        console.log("File saved successfully:", result.filePath);
+      }
+    } catch (err) {
+      alert("Failed to export domain: " + err.message);
+    }
   };
 
   const handleSave = () => {
@@ -225,6 +239,13 @@ const DomainBuilder = ({ isOpen, onClose }) => {
                           onClick={() => handleDelete(d.id)}
                         >
                           Delete
+                        </button>
+                        <button
+                          className="db-action-btn db-export-btn"
+                          onClick={() => handleExport(d)}
+                          title="Export to JSON"
+                        >
+                          <BsDownload />
                         </button>
                       </>
                     )}

@@ -1,133 +1,109 @@
-# Project Plan Presentation (PPP)
-## Ontology-Aware AI Knowledge Assistant (ChatGPT Clone)
+---
+marp: true
+size: 16:9
+paginate: true
+title: Chat GPT Clone - Ontology Ver.
+theme: default
+backgroundColor: white
+---
+
+# Chat GPT Clone - Ontology Ver.
+## Project Plan Presentation
+
 **Individual Project - A.J. Schulte**
 
----
-
-## 📋 Executive Summary
-
-A real-time desktop AI assistant built on the **MLOD (Multi-level Ontology Description)** framework. Unlike standard ChatGPT clones, this application integrates a structured knowledge layer (ontology) to ground AI responses in verified facts, reduce hallucinations, and allow domain experts to define the "ground truth" for their conversations.
+ASE285 – Software Engineering
 
 ---
 
-## 🎯 Project Overview
+## Problem Domain
 
-| Attribute        | Details                                 |
-| ---------------- | --------------------------------------- |
-| **Project Name** | Ontology-Aware AI Assistant             |
-| **Type**         | Electron Desktop Application            |
-| **Duration**     | 11 Weeks (2 Sprints)                    |
-| **Target Users** | Domain Experts, Researchers, Developers |
+Standard AI chatbots generate responses without any grounding in verified, domain-specific knowledge, leading to hallucinations and unreliable outputs for specialized fields like medicine or software engineering.
 
----
+## Solution
 
-## 🛠️ Technology Stack
-
-### Frontend & App Shell
-- **React** – Component-based UI framework
-- **Electron** – Native desktop shell (Mac/Windows/Linux)
-- **Redux Toolkit** – State management for conversations and ontology
-
-### Data & Knowledge
-- **MLOD Framework** – Multi-level ontology modeling
-- **IndexedDB** – Persistent local knowledge storage
-
-### AI Integration
-- **Groq / OpenAI API** – High-performance LLM integration (llama-3.1-8b-instant)
-- **Electron IPC** – Secure communication between renderer and API services
+A desktop AI assistant built on an ontology framework (MLOD) that enriches prompts with structured domain knowledge, verifies AI claims against a formal knowledge graph, and flags unverified statements in real time.
 
 ---
 
-## ✨ Key Features
+## Technology Stack
 
-### Sprint 1: Technology Foundation & Ontology Awareness
-*Completed*
-
-| Feature              | Description                                                           |
-| -------------------- | --------------------------------------------------------------------- |
-| **Domain Selector**  | Choose specialized knowledge domains (e.g., General, Medical, SE).    |
-| **Grounded Prompts** | System enriches AI prompts with ground-truth facts from the ontology. |
-| **Concept Tagging**  | AI responses are tagged with key ontology concepts they reference.    |
-| **Real-Time IPC**    | Secure communication between Electron and React for AI responses.     |
-
-### Sprint 2: Visualization & Formal Verification
-*Planned*
-
-| Feature                 | Description                                                          |
-| ----------------------- | -------------------------------------------------------------------- |
-| **Knowledge Panel**     | Visual graph displaying active ontology concepts and relationships.  |
-| **Domain Builder**      | Low-code UI for defining new concepts and relationships.             |
-| **Fact Verification**   | AI validates its own claims against the formal knowledge graph.      |
-| **Hallucination Flags** | visual warnings when the AI says something unverified in the domain. |
+| Layer            | Technology                                     |
+| ---------------- | ---------------------------------------------- |
+| **Frontend**     | React, Redux Toolkit                           |
+| **App Shell**    | Electron (Desktop)                             |
+| **Visualization**| D3.js (Force-directed Knowledge Graphs)        |
+| **AI Provider**  | Groq / OpenAI API (LLM)                        |
+| **IPC**          | Electron Main ↔ Renderer (contextBridge)       |
+| **Persistence**  | localStorage                                   |
+| **Testing**      | Vitest + React Testing Library                 |
 
 ---
 
-## 🚀 Sprint Structure
+## Sprint 1 Features (Feb 1 – Mar 5, 2026)
 
-### Sprint 1: Ontology Integration (5 Weeks)
-
-| Week | Phase          | Deliverable                                      |
-| ---- | -------------- | ------------------------------------------------ |
-| 1    | Infrastructure | IPC Setup & Groq API Integration (Free Tier)     |
-| 2    | MLOD Layer 1   | Domain Definitions & Concept Tree implementation |
-| 3    | MLOD Layer 2   | Prompt Enrichment Engine (Logical Injection)     |
-| 4    | UI Systems     | Domain Selector & Concept Tagging interface      |
-| 5    | Testing        | Vitest Integration (100% core logic coverage)    |
-
-### Sprint 2: Advanced Knowledge Ops (6 Weeks)
-
-| Week | Phase          | Deliverable                                     |
-| ---- | -------------- | ----------------------------------------------- |
-| 6    | Visualization  | Interactive Knowledge Graph (D3.js integration) |
-| 7    | Low-Code UI    | Domain Builder CRUD (User-defined ontologies)   |
-| 8    | Logical Proofs | Fact Verification Mode toggle & logic           |
-| 9    | UI Alerts      | Hallucination Warning system                    |
-| 10   | Data Output    | Knowledge Export (Structured JSON/RDF)          |
-| 11   | Polish         | UI/UX Refinement & Final Presentation Prep      |
+| Feature                         | Date     | Requirements                  |
+| ------------------------------- | -------- | ----------------------------- |
+| Electron IPC & Groq Integration | Feb 1    | FR-01, FR-05, FR-06, NFR-03   |
+| Conversation Management         | Feb 8    | FR-02, FR-03, FR-04           |
+| MLOD Domain Definitions         | Feb 8    | FR-07, NFR-05, NFR-07         |
+| Ontology-Grounded Prompts       | Feb 15   | FR-08, NFR-06                 |
+| Domain Selector & Concept Tags  | Feb 22   | FR-07, FR-10, NFR-04          |
+| Automated Testing (Vitest)      | Mar 1    | NFR-02                        |
 
 ---
 
-## 📦 Functional Requirements
+## Sprint 2 Features (Mar 15 – Apr 25, 2026)
 
+| Feature                            | Date     | Requirements         |
+| ---------------------------------- | -------- | -------------------- |
+| Interactive Knowledge Panel (D3)   | Mar 15   | FR-09, NFR-04        |
+| Domain Builder (CRUD Modal)        | Mar 22   | FR-09, NFR-07        |
+| Fact Verification & Hallucination  | Mar 29   | FR-11, NFR-01        |
+| Knowledge Export (JSON)            | Apr 5    | FR-12                |
+| Full Project Testing               | Apr 12   | NFR-02               |
+| UI/UX Polish & Final Docs         | Apr 19   | NFR-04               |
+
+---
+
+## Functional Requirements
+
+- **FR-01:** User can send messages and receive AI responses in real-time.
+- **FR-02:** User can create and manage multiple conversations.
+- **FR-03:** User can delete conversations.
+- **FR-04:** Messages and conversations persist across sessions via localStorage.
+- **FR-05:** Secure IPC communication between Electron renderer and main process.
+- **FR-06:** Support for multiple AI providers (OpenAI, Groq, OpenRouter).
 - **FR-07:** User can select a knowledge domain to ground the AI's responses.
 - **FR-08:** System enriches the AI system prompt with specific domain facts.
-- **FR-09:** User can define new concepts and relationships via the Domain Builder.
+- **FR-09:** User can visualize and define ontology concepts and relationships.
 - **FR-10:** AI responses are automatically tagged with relevant ontology concepts.
 - **FR-11:** User can toggle Fact Verification to validate AI claims against the ontology.
-- **FR-12:** User can export ontology structures alongside conversation history.
+- **FR-12:** User can export ontology structures as structured JSON files.
 
 ---
 
-## 🔒 Non-Functional Requirements
+## Non-Functional Requirements
 
 - **NFR-01:** Total AI response time < 3 seconds despite ontology lookups.
-- **NFR-04:** Interface is responsive across shared desktop window sizes.
-- **NFR-06:** Ontology lookups and prompt building must complete in < 500ms.
-- **NFR-07:** Domain knowledge (ontology) persists across sessions via IndexedDB.
+- **NFR-02:** Automated test suite with 90%+ core logic coverage (Vitest).
+- **NFR-03:** Application runs as a native desktop app via Electron.
+- **NFR-04:** Interface is responsive across desktop window sizes.
+- **NFR-05:** All API keys are securely managed via environment variables (.env).
+- **NFR-06:** Ontology lookups and prompt building complete in < 500ms.
+- **NFR-07:** Domain knowledge persists across sessions via localStorage.
 
 ---
 
-## 📅 Timeline Overview
+## Timeline Overview
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                         SPRINT 1 (5 Weeks)                      │
-│                        Ontology Foundation                      │
-├─────────────────────────────────────────────────────────────────┤
-│ Week 1: Infrastructure     ████░░░░░░░░░░░░░░░░░░░░             │
-│ Week 2: MLOD Layer 1       ░░░░████░░░░░░░░░░░░░░░░             │
-│ Week 3: MLOD Layer 2       ░░░░░░░░████░░░░░░░░░░░░             │
-│ Week 4: UI Development     ░░░░░░░░░░░░████░░░░░░░░             │
-│ Week 5: Testing (Vitest)   ░░░░░░░░░░░░░░░░████░░░░             │
-├─────────────────────────────────────────────────────────────────┤
-│                         SPRINT 2 (6 Weeks)                      │
-│                        Visual Knowledge                         │
-├─────────────────────────────────────────────────────────────────┤
-│ Week 6: Visualization      ░░░░░░░░░░░░░░░░░░░░████             │
-│ Week 7: Domain Builder     ░░░░░░░░░░░░░░░░░░░░░░░░████         │
-│ Week 8: Verification       ░░░░░░░░░░░░░░░░░░░░░░░░░░░░████     │
-│ Week 9: Hallucination Flags░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░████ │
-│ Week 10: Data Export       ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
-│ Week 11: Polish & Demo     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
-└─────────────────────────────────────────────────────────────────┘
+ Sprint 1 (Feb 1 – Mar 5)          Sprint 2 (Mar 15 – Apr 25)
+ ─────────────────────────          ──────────────────────────────
+ Feb 1  │ IPC & Groq Setup         Mar 15 │ Knowledge Panel (D3)
+ Feb 8  │ Domain Definitions        Mar 22 │ Domain Builder CRUD
+ Feb 15 │ Prompt Enrichment         Mar 29 │ Fact Verification
+ Feb 22 │ Domain Selector & Tags    Apr 5  │ Knowledge Export
+ Mar 1  │ Testing (Vitest)          Apr 12 │ Full Project Testing
+                                    Apr 19 │ Polish & Demo Prep
 ```

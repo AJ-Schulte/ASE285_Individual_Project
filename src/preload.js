@@ -8,6 +8,9 @@ contextBridge.exposeInMainWorld('electron', {
 
   // Send messages to OpenAI via the main process (Node.js, no browser restrictions)
   sendMessage: (messages) => ipcRenderer.invoke('ai-send-message', messages),
+
+  // Save file via native dialog
+  saveFile: (content, defaultPath) => ipcRenderer.invoke('save-file', content, defaultPath),
 });
 
 window.addEventListener('DOMContentLoaded', () => {

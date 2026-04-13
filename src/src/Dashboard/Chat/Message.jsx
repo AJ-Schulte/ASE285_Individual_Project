@@ -24,24 +24,41 @@ const SlowText = (props) => {
 };
 
 /**
- * Renders a verification result sentence with color-coded indicator.
+ * Renders a verification result sentence with color-coded indicator and 
+ * level-specific tooltips.
  */
 const VerifiedSentence = ({ result }) => {
   const [showTip, setShowTip] = useState(false);
 
+  const isRel = result.level === 'relationship';
+  const isConcept = result.level === 'concept';
+  
+  // Icon and label based on level
+  const icon = isRel ? "🛡️" : (isConcept ? "✅" : "⚠️");
+  const levelClass = isRel ? "vr-rel-verified" : (isConcept ? "vr-concept-verified" : "vr-unverified");
+
+  const getTooltipContent = () => {
+    if (isRel) {
+      const rel = result.matchedRelationships[0];
+      return `Verified Relation: ${rel.subject} ${rel.predicate} ${rel.object}${rel.fullMatch ? "" : " (partial match)"}`;
+    }
+    if (isConcept) {
+      return `Grounded in concepts: ${result.matchedConcepts.join(", ")}`;
+    }
+    return "No ontology match found — unverified claim";
+  };
+
   return (
     <span
-      className={`vr-sentence ${result.verified ? "vr-verified" : "vr-unverified"}`}
+      className={`vr-sentence ${levelClass}`}
       onMouseEnter={() => setShowTip(true)}
       onMouseLeave={() => setShowTip(false)}
     >
-      <span className="vr-icon">{result.verified ? "✅" : "⚠️"}</span>
+      <span className="vr-icon">{icon}</span>
       {result.sentence}{" "}
       {showTip && (
         <span className="vr-tip">
-          {result.verified
-            ? `Grounded in: ${result.matchedConcepts.join(", ")}`
-            : "No ontology match found — unverified claim"}
+          {getTooltipContent()}
         </span>
       )}
     </span>
