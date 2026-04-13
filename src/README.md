@@ -25,8 +25,20 @@ An **Electron + React + Vite** desktop AI assistant built on the MLOD (Multi-lev
 | Domain Builder (CRUD Modal)        | Mar 22   | FR-09, NFR-07        | Create, edit, view, and delete custom ontologies                |
 | Fact Verification & Hallucination  | Mar 29   | FR-11, NFR-01        | Relationship-level triplet validation with visual indicators    |
 | Knowledge Export (JSON)            | Apr 5    | FR-12                | Native save dialog to export ontologies as structured JSON      |
-| Full Project Testing               | Apr 12   | NFR-02               | 58 tests across 10 test files (services, UI, integration)       |
+| Full Project Testing               | Apr 12   | NFR-02               | 81 tests across 11 test files (Unit, Regression, Integration, Acceptance) |
 | UI/UX Polish & Final Docs         | Apr 19   | NFR-04               | Final responsive design refinements and documentation           |
+
+---
+
+## 📚 Documentation
+
+Detailed documentation for users and developers can be found in the `docs/` folder:
+
+- **[User Manual](file:///c:/Users/captr/Documents/GitHub/ASE285_Individual_Project/docs/user_manual.md)**: Setup guide, feature walk-through, and verification usage.
+- **[Design & Architecture](file:///c:/Users/captr/Documents/GitHub/ASE285_Individual_Project/docs/design_architecture.md)**: Technical overview of the Electron process model, IPC bridge, and ontology engine.
+- **[Test Suite README](file:///c:/Users/captr/Documents/GitHub/ASE285_Individual_Project/src/src/__tests__/README.md)**: Details on the 81-test suite across unit, regression, integration, and acceptance categories.
+- **[Sprint 1 Retrospective](file:///c:/Users/captr/Documents/GitHub/ASE285_Individual_Project/docs/presentation/sprint_1_retrospective.md)**: Analysis of the first half of development.
+- **[Project Plan Presentation](file:///c:/Users/captr/Documents/GitHub/ASE285_Individual_Project/docs/presentation/ppp_individual.md)**: High-level vision and roadmap.
 
 ---
 
