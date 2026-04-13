@@ -2,8 +2,8 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import ontologyReducer from '../ontologySlice';
-import DomainSelector from '../Dashboard/DomainSelector/DomainSelector';
+import ontologyReducer from '../../ontologySlice';
+import DomainSelector from '../../Dashboard/DomainSelector/DomainSelector';
 import React from 'react';
 
 // Simplified store for testing

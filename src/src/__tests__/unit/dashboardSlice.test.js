@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import dashboardReducer, { addMessage, setSelectedConversationId } from '../Dashboard/dashboardSlice';
+import dashboardReducer, { addMessage, setSelectedConversationId } from '../../Dashboard/dashboardSlice';
 
 describe('dashboardSlice', () => {
     const initialState = {

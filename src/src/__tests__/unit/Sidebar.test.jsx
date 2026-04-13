@@ -3,8 +3,8 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { describe, it, expect, vi } from 'vitest';
-import Sidebar from '../Dashboard/Sidebar/Sidebar';
-import dashboardReducer from '../Dashboard/dashboardSlice';
+import Sidebar from '../../Dashboard/Sidebar/Sidebar';
+import dashboardReducer from '../../Dashboard/dashboardSlice';
 
 const createTestStore = (initialState) => {
     return configureStore({

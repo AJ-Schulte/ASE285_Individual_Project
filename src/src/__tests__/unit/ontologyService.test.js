@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { getDomains, getDomainById, buildSystemPrompt, extractConceptTags } from '../services/ontologyService';
+import { getDomains, getDomainById, buildSystemPrompt, extractConceptTags } from '../../services/ontologyService';
 
 describe('ontologyService', () => {
     describe('getDomains', () => {

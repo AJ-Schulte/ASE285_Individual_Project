@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import ontologyReducer, { setSelectedDomainId, loadDomains } from '../ontologySlice';
+import ontologyReducer, { setSelectedDomainId, loadDomains } from '../../ontologySlice';
 
 describe('ontologySlice', () => {
     const initialState = {

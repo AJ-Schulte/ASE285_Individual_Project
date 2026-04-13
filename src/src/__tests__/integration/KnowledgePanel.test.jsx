@@ -2,8 +2,8 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import KnowledgePanel from '../Dashboard/KnowledgePanel/KnowledgePanel';
-import ontologyReducer from '../ontologySlice';
+import KnowledgePanel from '../../Dashboard/KnowledgePanel/KnowledgePanel';
+import ontologyReducer from '../../ontologySlice';
 
 // Mock D3 — chain-friendly mock that covers all methods used by KnowledgePanel
 vi.mock('d3', () => {
